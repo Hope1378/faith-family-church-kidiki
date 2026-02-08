@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    --font-sans: var(--font-inter), system-ui, sans-serif;
+    --font-serif: var(--font-playfair), Georgia, serif;
+    /* Updated to modern vibrant gold color scheme */
+    --background: 0 0% 100%;
+    --foreground: 45 90% 25%;
+    --card: 0 0% 100%;
+    --card-foreground: 45 90% 25%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 45 90% 25%;
+    --primary: 45 100% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 45 100% 85%;
+    --secondary-foreground: 45 90% 25%;
+    --muted: 45 100% 90%;
+    --muted-foreground: 45 60% 40%;
+    --accent: 45 100% 60%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    /* Made border transparent to remove visible line */
+    --border: 0 0% 100%;
+    --input: 45 90% 80%;
+    --ring: 45 100% 55%;
+    --chart-1: 45 100% 55%;
+    --chart-2: 45 100% 60%;
+    --chart-3: 45 90% 50%;
+    --chart-4: 45 90% 60%;
+    --chart-5: 44 90% 55%;
+    --radius: 0.5rem;
+    --sidebar-background: 45 100% 98%;
+    --sidebar-foreground: 45 90% 25%;
+    --sidebar-primary: 45 100% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 45 100% 90%;
+    --sidebar-accent-foreground: 45 90% 25%;
+    --sidebar-border: 45 90% 85%;
+    --sidebar-ring: 45 100% 55%;
+  }
+  .dark {
+    --background: 45 30% 15%;
+    --foreground: 45 100% 90%;
+    --card: 45 40% 20%;
+    --card-foreground: 45 100% 90%;
+    --popover: 45 40% 20%;
+    --popover-foreground: 45 100% 90%;
+    --primary: 45 100% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 45 40% 25%;
+    --secondary-foreground: 45 100% 90%;
+    --muted: 45 40% 25%;
+    --muted-foreground: 45 80% 70%;
+    --accent: 45 100% 70%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 45 100% 90%;
+    --border: 45 40% 25%;
+    --input: 45 40% 25%;
+    --ring: 45 100% 65%;
+    --chart-1: 45 100% 65%;
+    --chart-2: 45 100% 70%;
+    --chart-3: 45 90% 65%;
+    --chart-4: 45 90% 70%;
+    --chart-5: 44 90% 65%;
+  }
+}
+
+@layer base {
+  * {
+    /* Removed border-border to eliminate the visible line */
+    @apply border-transparent;
+  }
+  html,
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: var(--font-inter), system-ui, sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+  }
+  /* Headings use Playfair Display */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-playfair), Georgia, serif;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+  }
+  /* Body elements use Inter */
+  button,
+  input,
+  textarea,
+  select,
+  a,
+  p,
+  span,
+  div,
+  label {
+    font-family: var(--font-inter), system-ui, sans-serif;
+  }
+  p {
+    line-height: 1.75;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4af37;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #aa8c2c;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Animation utilities */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #d4af37;
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
