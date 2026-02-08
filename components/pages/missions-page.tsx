@@ -20,64 +20,68 @@ import { Card, CardContent } from "@/components/ui/card"
 export function MissionsPage() {
   const [activeFilter, setActiveFilter] = useState("all")
 
+  // UPDATED: Ongoing Missions gallery items + new images + new descriptions
   const missions = [
     {
-      title: "Community Food Distribution",
+      title: "Church Expansion Project",
       location: "Kidiki Village, Uganda",
       date: "Ongoing",
-      category: "outreach",
+      category: "church",
       description:
-        "Providing essential food supplies to families in need across Kidiki and surrounding communities. Our team distributes rice, beans, maize flour, and other staples on a regular basis.",
-      image: "/images/outreach34.jpg",
-      impact: "50+ families served monthly",
+        "Expanding the church facilities to create more space for worship, discipleship, children’s ministry, and community gatherings—so more souls can be reached and served.",
+      image: "/images/const1.jpg",
+      impact: "Building for growth",
     },
     {
-      title: "Children's Education Support",
+      title: "Land Acquired for School Project",
       location: "Kidiki, Uganda",
       date: "Ongoing",
       category: "education",
       description:
-        "Supporting children with school supplies, uniforms, and tuition assistance to ensure every child has access to quality education.",
-      image: "/images/outreach6.jpg",
-      impact: "30+ children enrolled",
+        "Land has been secured for the upcoming school project to provide access to quality education, reduce long travel distances, and support children in the community.",
+      image: "/images/land1.jpg",
+      impact: "Education foundation set",
     },
     {
-      title: "Sunday Worship & Discipleship",
-      location: "Faith Family Church, Kidiki",
-      date: "Every Sunday",
-      category: "worship",
-      description:
-        "Weekly Sunday services bringing the community together for worship, prayer, and biblical teaching. Building strong disciples of Christ.",
-      image: "/images/sundayservice.jpg",
-      impact: "Growing congregation",
-    },
-    {
-      title: "Medical Outreach",
+      title: "Land Acquired for Hospital Project",
       location: "Kidiki & Surrounding Areas",
-      date: "Quarterly",
+      date: "Ongoing",
+      category: "hospital",
+      description:
+        "Land has been acquired to support the future hospital project, bringing basic healthcare services closer to families in remote and underserved communities.",
+      image: "/images/land2.jpg",
+      impact: "Healthcare access vision",
+    },
+    {
+      title: "Land View 3",
+      location: "Kidiki, Uganda",
+      date: "Ongoing",
+      category: "land",
+      description:
+        "A third view of the acquired land showing the wider space and potential layout areas for development (school and hospital support infrastructure).",
+      image: "/images/land3.jpg",
+      impact: "Site planning underway",
+    },
+    {
+      title: "Community Outreach Mission",
+      location: "Kidiki & Nearby Communities",
+      date: "Ongoing",
       category: "outreach",
       description:
-        "Partnering with healthcare professionals to provide free medical check-ups, basic treatments, and health education to underserved communities.",
-      image: "/images/outreach8.jpg",
-      impact: "100+ people treated per event",
-    },
-    {
-      title: "Youth Empowerment Program",
-      location: "Kidiki, Uganda",
-      date: "Bi-weekly",
-      category: "education",
-      description:
-        "Equipping young people with life skills, vocational training, and spiritual mentorship to help them build a brighter future.",
-      image: "/images/congregation.jpg",
-      impact: "20+ youth participants",
+        "Ongoing community outreach through prayer, visits, encouragement, and support for vulnerable families—sharing the love of Christ in practical ways.",
+      image: "/images/out1.jpg",
+      impact: "Serving families regularly",
     },
   ]
 
+  // UPDATED: Category filters to match the new missions
   const filters = [
-    { key: "all", label: "All Missions" },
+    { key: "all", label: "All" },
+    { key: "church", label: "Church" },
+    { key: "education", label: "School" },
+    { key: "hospital", label: "Hospital" },
+    { key: "land", label: "Land" },
     { key: "outreach", label: "Outreach" },
-    { key: "education", label: "Education" },
-    { key: "worship", label: "Worship" },
   ]
 
   const filteredMissions =
@@ -175,16 +179,11 @@ export function MissionsPage() {
         </div>
       </section>
 
-      {/* Missions Listing (UNCHANGED) */}
+      {/* Missions Listing (UPDATED: title/subtitle removed + full-width gallery) */}
       <section className="w-full py-16 md:py-24 bg-gradient-to-b from-purple-50 to-white">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-purple-900 mb-4">
-              Our Active Missions
-            </h2>
-            <p className="text-lg text-purple-700 max-w-2xl mx-auto">
-              Each mission is designed to address specific needs within our community while sharing the love of Christ.
-            </p>
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-purple-900">Ongoing Missions</h2>
           </div>
 
           <div className="flex flex-wrap justify-center gap-3 mb-12">
@@ -203,7 +202,8 @@ export function MissionsPage() {
             ))}
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+          {/* UPDATED: stretches full width (removed max-w-6xl and mx-auto), height unchanged (h-48 kept) */}
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 w-full">
             {filteredMissions.map((mission, index) => (
               <Card
                 key={index}
