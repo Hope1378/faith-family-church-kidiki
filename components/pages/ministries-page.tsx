@@ -2,7 +2,16 @@
 
 import { useMemo, useState } from "react"
 import Image from "next/image"
-import { Globe, Heart, UserCheck, Baby, Users, Music, X } from "lucide-react"
+import {
+  Globe,
+  Heart,
+  UserCheck,
+  Baby,
+  Users,
+  Music,
+  HeartHandshake,
+  X,
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { YouformEmbed } from "@/components/youform-embed"
@@ -30,14 +39,13 @@ export function MinistriesPage() {
         comingSoon: true,
       },
 
-      // ✅ Outreach Ministry now shows "Connect" (comingSoon removed)
+      // ✅ Outreach icon changed here
       {
         title: "Outreach Ministry",
         description:
           "Extending God’s love beyond the church walls through evangelism, community service, missions, and practical support to those in need.",
-        icon: Globe,
+        icon: HeartHandshake,
         image: "/images/community.jpg",
-        comingSoon: false,
       },
 
       {
@@ -85,10 +93,10 @@ export function MinistriesPage() {
   }
 
   return (
-    <main className="w-full bg-white text-slate-700 antialiased [font-family:var(--font-sans)]">
-      <section className="py-12 md:py-16">
+    <main className="w-full bg-gradient-to-b from-purple-50 via-white to-purple-50 text-slate-700 antialiased">
+      <section className="py-14 md:py-20">
         <div className="mx-auto w-full max-w-[1400px] px-6">
-          <div className="grid gap-7 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
             {ministries.map((m, idx) => {
               const Icon = m.icon
               const isComingSoon = m.comingSoon === true
@@ -96,9 +104,9 @@ export function MinistriesPage() {
               return (
                 <Card
                   key={`${m.title}-${idx}`}
-                  className="overflow-hidden rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg transition-shadow"
+                  className="overflow-hidden rounded-2xl border border-purple-100 bg-white shadow-md hover:shadow-xl transition-all duration-300"
                 >
-                  <div className="relative w-full aspect-[16/9] bg-slate-200">
+                  <div className="relative w-full aspect-[16/9]">
                     <Image
                       src={m.image}
                       alt={m.title}
@@ -106,17 +114,18 @@ export function MinistriesPage() {
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                     />
-                    <div className="absolute inset-0 bg-black/10" />
+
+                    <div className="absolute inset-0 bg-black/45" />
 
                     <div className="absolute bottom-4 left-4">
-                      <div className="h-11 w-11 rounded-full bg-purple-700 shadow-lg flex items-center justify-center ring-4 ring-white">
-                        <Icon className="h-5 w-5 text-white" />
+                      <div className="h-12 w-12 rounded-full bg-purple-700 shadow-lg flex items-center justify-center ring-4 ring-white">
+                        <Icon className="h-6 w-6 text-white" />
                       </div>
                     </div>
                   </div>
 
-                  <CardContent className="p-6">
-                    <h3 className="text-[19px] font-semibold text-slate-900 leading-tight">
+                  <CardContent className="p-7">
+                    <h3 className="text-[20px] font-semibold text-slate-900 leading-tight">
                       {m.title}
                     </h3>
 
@@ -129,7 +138,7 @@ export function MinistriesPage() {
                         <Button
                           type="button"
                           disabled
-                          className="rounded-full px-7 bg-purple-600/60 text-white"
+                          className="rounded-full px-7 bg-purple-400 text-white"
                         >
                           Coming Soon
                         </Button>
@@ -149,15 +158,15 @@ export function MinistriesPage() {
             })}
           </div>
 
-          <div className="mt-12 rounded-3xl border border-purple-200 overflow-hidden">
+          <div className="mt-16 rounded-3xl border border-purple-200 overflow-hidden shadow-lg">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-purple-900 via-purple-800 to-purple-900" />
-              <div className="relative p-9 text-white flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="relative p-10 text-white flex flex-col md:flex-row items-center justify-between gap-6">
                 <div>
-                  <h2 className="text-[21px] font-semibold leading-tight">
+                  <h2 className="text-[22px] font-semibold leading-tight">
                     Want to serve in a ministry?
                   </h2>
-                  <p className="mt-3 text-[15px] text-white/90 max-w-2xl">
+                  <p className="mt-3 text-[16px] text-white/90 max-w-2xl">
                     Share your interest and we’ll connect you to the right team.
                   </p>
                 </div>
@@ -180,7 +189,6 @@ export function MinistriesPage() {
             <button
               onClick={() => setOpen(false)}
               className="absolute top-4 right-4 z-10 bg-white rounded-full px-3 py-1 text-sm font-medium shadow"
-              aria-label="Close"
             >
               <span className="inline-flex items-center gap-2">
                 <X className="h-4 w-4" />
