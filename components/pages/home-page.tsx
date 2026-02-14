@@ -201,7 +201,7 @@ export function HomePage() {
             <div className="group bg-white overflow-hidden rounded-[25px] shadow-md border border-gray-100">
               <div className="relative h-48 w-full overflow-hidden rounded-t-[25px]">
                 <Image
-                  src="/images/church-20and-20office-20expansion-20in-20progress.jpg"
+                  src="/images/church-exp1.jpg"
                   alt="Church Expansion Project"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
