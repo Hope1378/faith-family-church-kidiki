@@ -21,7 +21,7 @@ export function HeroSlider() {
       altText: "Church congregation gathered for Sunday service",
     },
     {
-      image: "/images/outreach34.jpg",
+      image: "/images/photo1.png",
       title: "Community Outreach",
       description: "Making a difference in the lives of those around us.",
       altText: "Community outreach with church team and members",
