@@ -32,7 +32,20 @@ type PageType =
   | "ministries"
   | "sponsorship"
 
-const validPages: PageType[] = ["home", "about", "missions", "events", "gallery", "testimonials", "give", "contact", "leadership", "media", "ministries", "sponsorship"]
+const validPages: PageType[] = [
+  "home",
+  "about",
+  "missions",
+  "events",
+  "gallery",
+  "testimonials",
+  "give",
+  "contact",
+  "leadership",
+  "media",
+  "ministries",
+  "sponsorship",
+]
 
 export default function LandingPage() {
   const [currentPage, setCurrentPage] = useState<PageType>("home")
@@ -42,20 +55,15 @@ export default function LandingPage() {
   const [eventsDropdownOpen, setEventsDropdownOpen] = useState(false)
   const [mobileEventsDropdownOpen, setMobileEventsDropdownOpen] = useState(false)
 
-  // Read page from URL hash on initial load and when hash changes
   useEffect(() => {
     const getPageFromHash = () => {
       const hash = window.location.hash.replace("#", "")
-      if (hash && validPages.includes(hash as PageType)) {
-        return hash as PageType
-      }
+      if (hash && validPages.includes(hash as PageType)) return hash as PageType
       return "home"
     }
 
-    // Set initial page from URL hash
     setCurrentPage(getPageFromHash())
 
-    // Listen for hash changes (browser back/forward buttons)
     const handleHashChange = () => {
       setCurrentPage(getPageFromHash())
       window.scrollTo({ top: 0, behavior: "smooth" })
@@ -97,7 +105,6 @@ export default function LandingPage() {
   }
 
   const handleNavigation = (page: PageType) => {
-    // Update URL hash for persistence
     window.location.hash = page === "home" ? "" : page
     setCurrentPage(page)
     setMobileMenuOpen(false)
@@ -105,7 +112,6 @@ export default function LandingPage() {
     setEventsDropdownOpen(false)
     setMobileAboutDropdownOpen(false)
     setMobileEventsDropdownOpen(false)
-    // Scroll to top of page
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
@@ -125,6 +131,7 @@ export default function LandingPage() {
               </span>
             </p>
           </div>
+
           <div className="flex items-center gap-1 sm:gap-3 flex-shrink-0 mr-[60px] sm:mr-[80px] md:mr-[100px] lg:mr-[140px]">
             <a
               href="https://facebook.com"
@@ -167,11 +174,12 @@ export default function LandingPage() {
       </div>
 
       <header className="sticky top-0 z-50 bg-gradient-to-r from-purple-900 via-purple-800 to-purple-900 shadow-xl border-b border-purple-950">
-        <div className="relative flex h-[80px] items-center px-6 md:px-10 lg:px-16">
-          {/* Logo - Flush Left */}
+        {/* ✅ FIXED: justify-between so logo stays left and hamburger stays right */}
+        <div className="relative flex h-[80px] items-center justify-between px-6 md:px-10 lg:px-16">
+          {/* ✅ FIXED: logo is no longer absolute (so it won't cover the hamburger) */}
           <button
             onClick={() => handleNavigation("home")}
-            className="absolute left-6 md:left-10 lg:left-16 flex items-center hover:opacity-90 transition-all duration-300 flex-shrink-0 gap-2 lg:gap-3"
+            className="flex items-center hover:opacity-90 transition-all duration-300 flex-shrink-0 gap-2 lg:gap-3"
           >
             <div className="relative h-[38px] w-[38px] sm:h-[40px] sm:w-[40px] md:h-[44px] md:w-[44px] lg:h-[48px] lg:w-[48px] flex-shrink-0 rounded-full overflow-hidden ring-2 ring-white/30">
               <Image src="/images/logo-icon.jpeg" alt="Faith Family Church Kidiki Logo" fill className="object-cover" priority />
@@ -186,6 +194,7 @@ export default function LandingPage() {
             </div>
           </button>
 
+          {/* Desktop Nav stays centered */}
           <nav className="hidden lg:flex items-center gap-1 mx-auto">
             <button
               onClick={() => handleNavigation("home")}
@@ -211,9 +220,7 @@ export default function LandingPage() {
                 }`}
               >
                 About Us
-                <ChevronDown
-                  className={`h-3 w-3 transition-transform duration-200 ${aboutDropdownOpen ? "rotate-180" : ""}`}
-                />
+                <ChevronDown className={`h-3 w-3 transition-transform duration-200 ${aboutDropdownOpen ? "rotate-180" : ""}`} />
               </button>
 
               {aboutDropdownOpen && (
@@ -222,9 +229,7 @@ export default function LandingPage() {
                     <button
                       onClick={() => handleNavigation("about")}
                       className={`block w-full text-left px-4 py-3 text-sm font-semibold transition-all duration-300 ${
-                        currentPage === "about"
-                          ? "text-white bg-purple-900"
-                          : "text-white hover:text-purple-100 hover:bg-purple-700"
+                        currentPage === "about" ? "text-white bg-purple-900" : "text-white hover:text-purple-100 hover:bg-purple-700"
                       }`}
                     >
                       Who We Are
@@ -232,9 +237,7 @@ export default function LandingPage() {
                     <button
                       onClick={() => handleNavigation("leadership")}
                       className={`block w-full text-left px-4 py-3 text-sm font-semibold transition-all duration-300 ${
-                        currentPage === "leadership"
-                          ? "text-white bg-purple-900"
-                          : "text-white hover:text-purple-100 hover:bg-purple-700"
+                        currentPage === "leadership" ? "text-white bg-purple-900" : "text-white hover:text-purple-100 hover:bg-purple-700"
                       }`}
                     >
                       Our Leaders
@@ -242,9 +245,7 @@ export default function LandingPage() {
                     <button
                       onClick={() => handleNavigation("ministries")}
                       className={`block w-full text-left px-4 py-3 text-sm font-semibold transition-all duration-300 ${
-                        currentPage === "ministries"
-                          ? "text-white bg-purple-900"
-                          : "text-white hover:text-purple-100 hover:bg-purple-700"
+                        currentPage === "ministries" ? "text-white bg-purple-900" : "text-white hover:text-purple-100 hover:bg-purple-700"
                       }`}
                     >
                       Ministries
@@ -278,9 +279,7 @@ export default function LandingPage() {
                 }`}
               >
                 Events
-                <ChevronDown
-                  className={`h-3 w-3 transition-transform duration-200 ${eventsDropdownOpen ? "rotate-180" : ""}`}
-                />
+                <ChevronDown className={`h-3 w-3 transition-transform duration-200 ${eventsDropdownOpen ? "rotate-180" : ""}`} />
               </button>
 
               {eventsDropdownOpen && (
@@ -289,9 +288,7 @@ export default function LandingPage() {
                     <button
                       onClick={() => handleNavigation("events")}
                       className={`block w-full text-left px-4 py-3 text-sm font-semibold transition-all duration-300 ${
-                        currentPage === "events"
-                          ? "text-white bg-purple-900"
-                          : "text-white hover:text-purple-100 hover:bg-purple-700"
+                        currentPage === "events" ? "text-white bg-purple-900" : "text-white hover:text-purple-100 hover:bg-purple-700"
                       }`}
                     >
                       Our Events
@@ -299,9 +296,7 @@ export default function LandingPage() {
                     <button
                       onClick={() => handleNavigation("testimonials")}
                       className={`block w-full text-left px-4 py-3 text-sm font-semibold transition-all duration-300 ${
-                        currentPage === "testimonials"
-                          ? "text-white bg-purple-900"
-                          : "text-white hover:text-purple-100 hover:bg-purple-700"
+                        currentPage === "testimonials" ? "text-white bg-purple-900" : "text-white hover:text-purple-100 hover:bg-purple-700"
                       }`}
                     >
                       Testimonials
@@ -309,9 +304,7 @@ export default function LandingPage() {
                     <button
                       onClick={() => handleNavigation("gallery")}
                       className={`block w-full text-left px-4 py-3 text-sm font-semibold transition-all duration-300 ${
-                        currentPage === "gallery"
-                          ? "text-white bg-purple-900"
-                          : "text-white hover:text-purple-100 hover:bg-purple-700"
+                        currentPage === "gallery" ? "text-white bg-purple-900" : "text-white hover:text-purple-100 hover:bg-purple-700"
                       }`}
                     >
                       Gallery
@@ -354,7 +347,6 @@ export default function LandingPage() {
               Contact
             </button>
 
-            {/* Give Now Button - Inside Nav */}
             <Button
               onClick={() => handleNavigation("give")}
               className="bg-white text-purple-800 hover:bg-purple-100 hover:text-purple-900 text-[14px] font-semibold px-5 py-2 ml-2 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-purple-300 rounded-lg"
@@ -363,7 +355,7 @@ export default function LandingPage() {
             </Button>
           </nav>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button (now safely on the right) */}
           <Button
             variant="outline"
             size="sm"
@@ -377,6 +369,7 @@ export default function LandingPage() {
 
         {mobileMenuOpen && (
           <div className="lg:hidden border-t border-purple-600/30 py-3 sm:py-4 space-y-2 bg-gradient-to-b from-purple-800 via-purple-700 to-purple-800 animate-fadeIn">
+            {/* (your mobile menu content stays exactly the same below) */}
             <button
               onClick={() => handleNavigation("home")}
               className={`block w-full text-left px-4 py-3 text-sm sm:text-base font-semibold transition-all duration-300 rounded-lg ${
@@ -400,9 +393,7 @@ export default function LandingPage() {
                 }`}
               >
                 About Us
-                <ChevronDown
-                  className={`h-4 w-4 transition-transform duration-200 ${mobileAboutDropdownOpen ? "rotate-180" : ""}`}
-                />
+                <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${mobileAboutDropdownOpen ? "rotate-180" : ""}`} />
               </button>
 
               {mobileAboutDropdownOpen && (
@@ -410,9 +401,7 @@ export default function LandingPage() {
                   <button
                     onClick={() => handleNavigation("about")}
                     className={`block w-full text-left px-4 py-2 text-sm font-semibold transition-all duration-300 rounded-lg ${
-                      currentPage === "about"
-                        ? "text-white bg-purple-900"
-                        : "text-purple-100 hover:text-white hover:bg-purple-600"
+                      currentPage === "about" ? "text-white bg-purple-900" : "text-purple-100 hover:text-white hover:bg-purple-600"
                     }`}
                   >
                     Who We Are
@@ -420,9 +409,7 @@ export default function LandingPage() {
                   <button
                     onClick={() => handleNavigation("leadership")}
                     className={`block w-full text-left px-4 py-2 text-sm font-semibold transition-all duration-300 rounded-lg ${
-                      currentPage === "leadership"
-                        ? "text-white bg-purple-900"
-                        : "text-purple-100 hover:text-white hover:bg-purple-600"
+                      currentPage === "leadership" ? "text-white bg-purple-900" : "text-purple-100 hover:text-white hover:bg-purple-600"
                     }`}
                   >
                     Our Leaders
@@ -430,9 +417,7 @@ export default function LandingPage() {
                   <button
                     onClick={() => handleNavigation("ministries")}
                     className={`block w-full text-left px-4 py-2 text-sm font-semibold transition-all duration-300 rounded-lg ${
-                      currentPage === "ministries"
-                        ? "text-white bg-purple-900"
-                        : "text-purple-100 hover:text-white hover:bg-purple-600"
+                      currentPage === "ministries" ? "text-white bg-purple-900" : "text-purple-100 hover:text-white hover:bg-purple-600"
                     }`}
                   >
                     Ministries
@@ -466,9 +451,7 @@ export default function LandingPage() {
                 }`}
               >
                 Events
-                <ChevronDown
-                  className={`h-4 w-4 transition-transform duration-200 ${mobileEventsDropdownOpen ? "rotate-180" : ""}`}
-                />
+                <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${mobileEventsDropdownOpen ? "rotate-180" : ""}`} />
               </button>
 
               {mobileEventsDropdownOpen && (
@@ -476,9 +459,7 @@ export default function LandingPage() {
                   <button
                     onClick={() => handleNavigation("events")}
                     className={`block w-full text-left px-4 py-2 text-sm font-semibold transition-all duration-300 rounded-lg ${
-                      currentPage === "events"
-                        ? "text-white bg-purple-900"
-                        : "text-purple-100 hover:text-white hover:bg-purple-600"
+                      currentPage === "events" ? "text-white bg-purple-900" : "text-purple-100 hover:text-white hover:bg-purple-600"
                     }`}
                   >
                     Our Events
@@ -486,9 +467,7 @@ export default function LandingPage() {
                   <button
                     onClick={() => handleNavigation("testimonials")}
                     className={`block w-full text-left px-4 py-2 text-sm font-semibold transition-all duration-300 rounded-lg ${
-                      currentPage === "testimonials"
-                        ? "text-white bg-purple-900"
-                        : "text-purple-100 hover:text-white hover:bg-purple-600"
+                      currentPage === "testimonials" ? "text-white bg-purple-900" : "text-purple-100 hover:text-white hover:bg-purple-600"
                     }`}
                   >
                     Testimonials
@@ -496,9 +475,7 @@ export default function LandingPage() {
                   <button
                     onClick={() => handleNavigation("gallery")}
                     className={`block w-full text-left px-4 py-2 text-sm font-semibold transition-all duration-300 rounded-lg ${
-                      currentPage === "gallery"
-                        ? "text-white bg-purple-900"
-                        : "text-purple-100 hover:text-white hover:bg-purple-600"
+                      currentPage === "gallery" ? "text-white bg-purple-900" : "text-purple-100 hover:text-white hover:bg-purple-600"
                     }`}
                   >
                     Gallery
