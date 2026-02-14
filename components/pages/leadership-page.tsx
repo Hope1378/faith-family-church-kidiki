@@ -67,14 +67,17 @@ export function LeadershipPage() {
             ))}
           </div>
 
-          {/* CTA Card (Opens Modal) */}
+          {/* CTA Card (Color Updated to Match Footer) */}
           <div className="max-w-5xl mx-auto mt-12">
             <Card
               onClick={() => setOpen(true)}
               className="rounded-3xl border border-purple-200 overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-300 group"
             >
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-[#4B1D95] via-[#6D28D9] to-[#2F2C92] group-hover:brightness-110 transition-all" />
+                
+                {/* ✅ MATCHES FOOTER BACKGROUND EXACTLY */}
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-900 via-purple-800 to-purple-900 group-hover:brightness-110 transition-all" />
+
                 <CardContent className="relative p-8 md:p-12 text-white text-center">
                   <h2 className="text-lg md:text-2xl font-semibold">
                     Join us in prayer and service
@@ -95,7 +98,6 @@ export function LeadershipPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
           <div className="relative w-[95%] md:w-[80%] lg:w-[60%] h-[85vh] bg-white rounded-2xl shadow-2xl overflow-hidden">
             
-            {/* Close Button */}
             <button
               onClick={() => setOpen(false)}
               className="absolute top-4 right-4 z-10 bg-white rounded-full px-3 py-1 text-sm font-medium shadow"
@@ -103,7 +105,6 @@ export function LeadershipPage() {
               Close
             </button>
 
-            {/* Embedded YouForm */}
             <iframe
               src="https://app.youform.com/forms/zyclclgy"
               className="w-full h-full"
