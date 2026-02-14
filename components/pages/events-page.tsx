@@ -10,9 +10,6 @@ type EventItem = {
   dateLine: string
   timeLine: string
   locationLine: string
-  imageSrc?: string
-  imageAlt?: string
-  theme: "purple" | "gold"
   status: "upcoming" | "past"
 }
 
@@ -20,10 +17,9 @@ const events: EventItem[] = [
   {
     status: "past",
     title: "Community Outreach",
-    dateLine: "November 2025",
+    dateLine: "November 15, 2025",
     timeLine: "9:00 AM - 4:00 PM EAT",
     locationLine: "Kidiki Village, Kamuli District",
-    theme: "purple",
   },
   {
     status: "upcoming",
@@ -31,38 +27,17 @@ const events: EventItem[] = [
     dateLine: "July 25, 2026",
     timeLine: "9:00 AM - 4:00 PM EAT",
     locationLine: "Kidiki Village, Kamuli District",
-    theme: "gold",
   },
 ]
 
-function svgDataUri(theme: "purple" | "gold") {
-  const isPurple = theme === "purple"
-  const svg = `
-  <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
-    <defs>
-      <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-        ${
-          isPurple
-            ? `<stop offset="0%" stop-color="#2e1065"/>
-               <stop offset="55%" stop-color="#6d28d9"/>
-               <stop offset="100%" stop-color="#0ea5e9"/>`
-            : `<stop offset="0%" stop-color="#111827"/>
-               <stop offset="55%" stop-color="#9a3412"/>
-               <stop offset="100%" stop-color="#f59e0b"/>`
-        }
-      </linearGradient>
-    </defs>
-    <rect width="1200" height="700" fill="url(#bg)"/>
-  </svg>`
-  return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`
-}
-
 function EventCard({ e }: { e: EventItem }) {
-  const src = e.imageSrc ?? svgDataUri(e.theme)
   const isUpcoming = e.status === "upcoming"
+  const imageSrc = isUpcoming ? "/images/banner.png" : "/images/m11.jpg"
 
   return (
-    <div style={{ width: 420 }} className="max-w-full">
+    <div className="w-[520px] max-w-full">
+
+      {/* STATUS BADGE */}
       <div className="mb-3">
         <span
           className={[
@@ -76,17 +51,20 @@ function EventCard({ e }: { e: EventItem }) {
         </span>
       </div>
 
-      <div className="relative h-[200px] w-full rounded-t-[25px] overflow-hidden shadow-sm">
+      {/* IMAGE BOX */}
+      <div className="relative h-[160px] w-[460px] rounded-t-[25px] overflow-hidden bg-[#2F2C92] shadow-sm">
         <Image
-          src={src}
-          alt={e.imageAlt ?? e.title}
+          src={imageSrc}
+          alt={isUpcoming ? "Upcoming Event Image" : "Past Event Image"}
           fill
-          sizes="420px"
-          className="object-cover"
+          sizes="460px"
+          className="object-contain object-top"
+          priority={isUpcoming}
         />
       </div>
 
-      <Card className="rounded-b-[25px] border border-gray-200 bg-gray-50 shadow-md">
+      {/* CARD — SAME WIDTH AS IMAGE */}
+      <Card className="w-[460px] rounded-b-[25px] border border-gray-200 bg-gray-50 shadow-md">
         <CardContent className="p-6 space-y-3 text-sm text-gray-700">
           <h3 className="text-lg font-semibold text-gray-900">
             {e.title}
@@ -123,8 +101,7 @@ export function EventsPage() {
           Events
         </h2>
 
-        {/* Slightly more separation */}
-        <div className="mt-6 inline-grid w-fit grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
           {pastEvent && <EventCard e={pastEvent} />}
           {upcomingEvent && <EventCard e={upcomingEvent} />}
         </div>
