@@ -128,6 +128,8 @@ export function MissionsPage() {
 
             <div className="relative mt-8 md:mt-10">
               <div className="absolute left-0 top-0 h-full w-1 rounded-l-xl bg-purple-600" />
+              <div className="absolute right-0 top-0 h-full w-1 rounded-r-xl bg-purple-600" />
+
               <div className="rounded-xl border border-slate-200 bg-white shadow-md px-6 py-8 md:px-10 md:py-10">
                 <p className="text-sm md:text-base text-slate-700 leading-relaxed">
                   Faith Family Church Kidiki stands as the only church in the entire village of Kidiki, serving as a
@@ -179,6 +181,34 @@ export function MissionsPage() {
         </div>
       </section>
 
+      {/* ✅ MOVED: Scripture Cards right above Ongoing Missions (content unchanged) */}
+      <section className="w-full bg-gradient-to-b from-white to-purple-50 border-t border-purple-100 py-6">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {scriptureCards.map((item) => {
+              const Icon = item.icon
+              return (
+                <div key={item.verse} className="rounded-2xl border border-purple-200 bg-white px-4 py-3 shadow-sm">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-purple-100">
+                      <Icon className="h-5 w-5 text-purple-700" />
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-sm font-semibold text-purple-900">{item.title}</p>
+                      <p className="text-xs text-purple-700">
+                        <Quote className="inline h-3 w-3 mr-1" />
+                        {item.text}
+                      </p>
+                      <p className="text-[11px] font-semibold text-purple-600">{item.verse}</p>
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* Missions Listing (UPDATED: title/subtitle removed + full-width gallery) */}
       <section className="w-full py-16 md:py-24 bg-gradient-to-b from-purple-50 to-white">
         <div className="container mx-auto px-4 md:px-6">
@@ -202,7 +232,6 @@ export function MissionsPage() {
             ))}
           </div>
 
-          {/* UPDATED: stretches full width (removed max-w-6xl and mx-auto), height unchanged (h-48 kept) */}
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 w-full">
             {filteredMissions.map((mission, index) => (
               <Card
@@ -227,34 +256,6 @@ export function MissionsPage() {
                 </CardContent>
               </Card>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Scripture Cards (KEEP) */}
-      <section className="w-full bg-gradient-to-b from-white to-purple-50 border-t border-purple-100 py-6">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {scriptureCards.map((item) => {
-              const Icon = item.icon
-              return (
-                <div key={item.verse} className="rounded-2xl border border-purple-200 bg-white px-4 py-3 shadow-sm">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-purple-100">
-                      <Icon className="h-5 w-5 text-purple-700" />
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-sm font-semibold text-purple-900">{item.title}</p>
-                      <p className="text-xs text-purple-700">
-                        <Quote className="inline h-3 w-3 mr-1" />
-                        {item.text}
-                      </p>
-                      <p className="text-[11px] font-semibold text-purple-600">{item.verse}</p>
-                    </div>
-                  </div>
-                </div>
-              )
-            })}
           </div>
         </div>
       </section>
