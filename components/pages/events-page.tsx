@@ -51,8 +51,8 @@ function EventCard({ e }: { e: EventItem }) {
         </span>
       </div>
 
-      {/* IMAGE BOX */}
-      <div className="relative h-[160px] w-[460px] rounded-t-[25px] overflow-hidden bg-[#2F2C92] shadow-sm">
+      {/* IMAGE BOX — More Left Shift */}
+      <div className="relative h-[160px] w-[460px] -ml-8 rounded-t-[25px] overflow-hidden bg-[#2F2C92] shadow-sm">
         <Image
           src={imageSrc}
           alt={isUpcoming ? "Upcoming Event Image" : "Past Event Image"}
@@ -63,8 +63,8 @@ function EventCard({ e }: { e: EventItem }) {
         />
       </div>
 
-      {/* CARD — SAME WIDTH AS IMAGE */}
-      <Card className="w-[460px] rounded-b-[25px] border border-gray-200 bg-gray-50 shadow-md">
+      {/* CARD — Same Width + Same Shift */}
+      <Card className="w-[460px] -ml-8 rounded-b-[25px] border border-gray-200 bg-gray-50 shadow-md">
         <CardContent className="p-6 space-y-3 text-sm text-gray-700">
           <h3 className="text-lg font-semibold text-gray-900">
             {e.title}
