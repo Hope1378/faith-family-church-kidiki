@@ -36,7 +36,6 @@ function EventCard({ e }: { e: EventItem }) {
 
   return (
     <div className="w-[520px] max-w-full">
-
       {/* STATUS BADGE */}
       <div className="mb-3">
         <span
@@ -51,24 +50,22 @@ function EventCard({ e }: { e: EventItem }) {
         </span>
       </div>
 
-      {/* IMAGE BOX — More Left */}
-      <div className="relative h-[160px] w-[460px] -ml-16 rounded-t-[25px] overflow-hidden bg-[#2F2C92] shadow-sm">
+      {/* IMAGE BOX */}
+      <div className="relative h-[160px] w-[400px] -ml-16 rounded-t-[25px] overflow-hidden bg-[#2F2C92] shadow-sm">
         <Image
           src={imageSrc}
           alt={isUpcoming ? "Upcoming Event Image" : "Past Event Image"}
           fill
-          sizes="460px"
+          sizes="400px"
           className="object-contain object-top"
           priority={isUpcoming}
         />
       </div>
 
-      {/* CARD — Same Width + Same Shift */}
-      <Card className="w-[460px] -ml-16 rounded-b-[25px] border border-gray-200 bg-gray-50 shadow-md">
+      {/* CARD */}
+      <Card className="w-[400px] -ml-16 rounded-b-[25px] border border-gray-200 bg-gray-50 shadow-md">
         <CardContent className="p-6 space-y-3 text-sm text-gray-700">
-          <h3 className="text-lg font-semibold text-gray-900">
-            {e.title}
-          </h3>
+          <h3 className="text-lg font-semibold text-gray-900">{e.title}</h3>
 
           <div className="flex items-center gap-2">
             <CalendarDays className="h-4 w-4 text-gray-500" />
@@ -97,12 +94,10 @@ export function EventsPage() {
   return (
     <main className="min-h-screen bg-white">
       <div className="max-w-6xl ml-16 md:ml-28 px-4 md:px-6 pt-20 pb-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-          Events
-        </h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Events</h2>
 
-        {/* Tight Middle Space */}
-        <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-2">
+        {/* ✅ REMOVE w-fit, reduce gap more */}
+        <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-x-0 lg:gap-y-6 lg:-space-x-8">
           {pastEvent && <EventCard e={pastEvent} />}
           {upcomingEvent && <EventCard e={upcomingEvent} />}
         </div>
